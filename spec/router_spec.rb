@@ -53,5 +53,20 @@ describe Router do
 
       router.match('/ping').should be_nil
     end
+
+    it "calls handler of matching route" do
+      out = []
+      router.route('/foo') { out << :foo }
+      router.route('/bar') { out << :bar }
+
+      router.match('/foo')
+      out.should eq([:foo])
+
+      router.match('/bar')
+      out.should eq([:foo, :bar])
+
+      router.match('/eek')
+      out.should eq([:foo, :bar])
+    end
   end
 end
