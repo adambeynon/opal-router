@@ -33,4 +33,25 @@ describe Router do
       router.routes.size.should eq(2)
     end
   end
+
+  describe "#match" do
+    it "returns nil when no routes on router" do
+      router.match('/foo').should be_nil
+    end
+
+    it "returns a matching route for the path" do
+      a = router.route('/foo') {}
+      b = router.route('/bar') {}
+
+      router.match('/foo').should eq(a)
+      router.match('/bar').should eq(b)
+    end
+
+    it "returns nil when there are no matching routes" do
+      router.route('/woosh') {}
+      router.route('/kapow') {}
+
+      router.match('/ping').should be_nil
+    end
+  end
 end

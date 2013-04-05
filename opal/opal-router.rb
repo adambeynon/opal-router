@@ -13,11 +13,17 @@ class Router
   end
 
   def route path, &handler
-    @routes << Route.new(path, &handler)
+    route = Route.new(path, &handler)
+    @routes << route
+    route
   end
 
   def update
     @path = `window.location.hash.replace(/^#*/, '')`
+  end
+
+  def match path
+    @routes.find { |r| r.match path }
   end
 
   class Route
