@@ -16,6 +16,7 @@ class Router
 
   def update
     @path = `window.location.hash.replace(/^#*/, '')`
+    match @path
   end
 
   def match path

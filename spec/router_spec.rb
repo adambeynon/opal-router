@@ -14,6 +14,17 @@ describe Router do
 
       router.path.should eq('/hello/world')
     end
+
+    it "calls #match with the new @path" do
+      set_native_hash '#/foo/bar'
+      called = nil
+
+      router.define_singleton_method(:match) { |m| called = m }
+      called.should be_nil
+
+      router.update
+      called.should "/foo/bar"
+    end
   end
 
   describe "#route" do
