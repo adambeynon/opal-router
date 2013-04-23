@@ -3,14 +3,6 @@ require 'spec_helper'
 describe Router do
   let(:router) { Router.new }
 
-  before do
-    router.start
-  end
-
-  after do
-    #router
-  end
-
   def set_native_hash hash
     `window.location.hash = #{hash}`
   end

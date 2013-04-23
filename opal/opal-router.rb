@@ -8,10 +8,6 @@ class Router
     `window.addEventListener('hashchange', function() { #{router.update}; }, false)`
   end
 
-  def start
-
-  end
-
   def route path, &handler
     route = Route.new(path, &handler)
     @routes << route
