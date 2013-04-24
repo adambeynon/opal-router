@@ -3,9 +3,8 @@ class Router
 
   def initialize
     @routes = []
-    router = self
 
-    `window.addEventListener('hashchange', function() { #{router.update}; }, false)`
+    Native.global.addEventListener 'hashchange', proc { update }, false
   end
 
   def route path, &handler
