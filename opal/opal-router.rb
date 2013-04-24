@@ -3,6 +3,7 @@ class Router
 
   def initialize
     @routes = []
+    @location = Native.global.location
 
     Native.global.addEventListener 'hashchange', proc { update }, false
   end
@@ -14,7 +15,8 @@ class Router
   end
 
   def update
-    @path = `window.location.hash.replace(/^#*/, '')`
+    @path = @location.hash.sub(/^#*/, '')
+
     match @path
   end
 
