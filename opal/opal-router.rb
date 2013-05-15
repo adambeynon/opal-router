@@ -3,9 +3,9 @@ class Router
 
   def initialize
     @routes = []
-    @location = Native.global.location
+    @location = $window.location
 
-    Native.global.addEventListener 'hashchange', proc { update }, false
+    $window.addEventListener 'hashchange', proc { update }, false
   end
 
   def route path, &handler
