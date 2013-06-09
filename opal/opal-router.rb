@@ -24,6 +24,12 @@ class Router
     @routes.find { |r| r.match path }
   end
 
+  # Navigate to the given hash location. This adds the '#' 
+  # fragment to the start of the path
+  def navigate path
+    @location.hash = "##{path}"
+  end
+
   class Route
 
     # Regexp for matching named params in path

@@ -3,4 +3,4 @@ gemspec
 
 gem 'rake'
 gem 'opal-spec'
-gem 'opal', :git => 'git://github.com/opal/opal.git'
+gem 'opal', github: 'opal/opal'

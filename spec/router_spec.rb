@@ -72,4 +72,24 @@ describe Router do
       out.should eq([:foo, :bar])
     end
   end
+
+  describe "#navigate" do
+    it "should update location.hash" do
+      router.navigate "foo"
+      $global.location.hash.should eq("#foo")
+    end
+
+    it "triggers the route matchers" do
+      called = false
+      router.route("/foo") { called = true }
+
+      router.navigate("/bar")
+      router.update
+      called.should be_false
+
+      router.navigate("/foo")
+      router.update
+      called.should be_true
+    end
+  end
 end
